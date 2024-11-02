@@ -55,6 +55,11 @@ _raku_tools_prove6 ()
             COMPREPLY=( $(compgen -f -- ${cur}) )
             return 0
             ;;
+        *)
+            if [[ ! -z ${cur} && ! ${cur} =~ ^- ]] ; then   # complete non-options as files
+                COMPREPLY=($(compgen -f -- ${cur}))
+                return 0
+            fi
     esac
 
     COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
