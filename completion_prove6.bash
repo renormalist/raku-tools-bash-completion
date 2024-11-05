@@ -15,7 +15,7 @@ _raku_tools_prove6 ()
     #
     commands=""
     #
-    all_args="v  --verbose
+    all_args="-v  --verbose
               -l  --lib
               --shuffle
               --ignore-exit
