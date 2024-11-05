@@ -14,28 +14,27 @@ _raku_tools_prove6 ()
     #
     commands=""
     #
-    all_args="\
-              -v  --verbose \
-              -l  --lib \
-              --shuffle \
-              --ignore-exit \
-              --reverse \
-              -q  --quiet \
-              -Q  --QUIET \
-              --timer \
-              --trap \
-              --help \
-              --version \
-              \
-              -I  --incdir \
-              -e  --exec \
-              --ext \
-              --harness \
-              --reporter \
-              -j  --jobs \
-              --cwd \
-              --err=stderr \
-              --err=ignore \
+    all_args="v  --verbose
+              -l  --lib
+              --shuffle
+              --ignore-exit
+              --reverse
+              -q  --quiet
+              -Q  --QUIET
+              --timer
+              --trap
+              --help
+              --version
+
+              -I  --incdir
+              -e  --exec
+              --ext
+              --harness
+              --reporter
+              -j  --jobs
+              --cwd
+              --err=stderr
+              --err=ignore
     "
     opts="$commands $all_args"
 
