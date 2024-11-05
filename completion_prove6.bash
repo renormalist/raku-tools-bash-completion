@@ -7,6 +7,7 @@ _raku_tools_prove6 ()
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
+    pre_prev="${COMP_WORDS[COMP_CWORD-2]}"
     subcommand="${COMP_WORDS[1]}"
 
     #
@@ -36,7 +37,16 @@ _raku_tools_prove6 ()
               --err=stderr
               --err=ignore
     "
+    err_args="stderr ignore"
     opts="$commands $all_args"
+
+    # Fix word separation for params with =, eg. --err=stderr/ignore
+    if [[ ${prev} =~ ^-- && ${cur} == '=' ]]; then
+        prev="${prev}="
+        cur=
+    elif [[ ${pre_prev} =~ ^-- && ${prev} == '=' ]]; then
+        prev="${pre_prev}="
+    fi
 
     #
     #  Complete the arguments to some of the basic commands.
@@ -52,6 +62,10 @@ _raku_tools_prove6 ()
             ;;
         -I|--incdir)
             COMPREPLY=( $(compgen -f -- ${cur}) )
+            return 0
+            ;;
+        --err=)
+            COMPREPLY=($(compgen -W "${err_args}" -- ${cur}))
             return 0
             ;;
         *)
